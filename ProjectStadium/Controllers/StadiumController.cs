@@ -11,41 +11,33 @@ namespace ProjectStadium.Controllers;
 [ApiController]
 public class StadiumController : ControllerBase
 {
-    private readonly StadiumService _service;
-    public StadiumController (StadiumService service)
+    private readonly IStadiumService _service;
+    public StadiumController (IStadiumService service)
     {
         _service = service;
     }
     [HttpPost]
     public async Task<IActionResult> Create(CreateStadiumViewModel viewModel)
     {
-        _service.CreateAsync(viewModel);
+        await _service.CreateAsync(viewModel);
         return Ok(viewModel);
     }
     [HttpGet]
-    public async Task<List<IActionResult>> GetAll()
+    public IActionResult GetAll()
     {
-        var responce = _service.GetAll();
-        if (responce.StatusCode == Domain.Enums.StatusCode.OK)
-        {
-            return Ok(responce);
-        }
-        return RedirectToAction("Error");
-    }
-    [HttpPut]
-    public async Task<IActionResult> Update(UpdateStadiumViewModel viewModel)
-    {
-        var responce = _service.UpdateAsync(viewModel);
-        return Ok(viewModel);
+        var response = _service.GetAll();
+        return Ok(response.Data);
     }
     [HttpDelete]
-    public async Task<IActionResult> Delete(int id)
+    public  Task<IActionResult> Delete(int id)
     {
-        var responce = await _service.DeleteAsync(id);
-        if (responce.StatusCode == Domain.Enums.StatusCode.OK)
-        {
-            return RedirectToAction("GetAll");
-        }
-        return RedirectToAction("Error");
+        var response =  _service.DeleteAsync(id);
+        return bool;
+    }
+    [HttpGet]
+    public  Task<ActionResult> GetByName(string name)
+    {
+        var response = _service.GetByName(name);
+        return Ok(response);
     }
 }

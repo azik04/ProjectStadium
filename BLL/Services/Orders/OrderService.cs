@@ -20,7 +20,7 @@ public class OrderService : IOrderService
                 CreateDateTime = DateTime.Now,
                 StadiumId = model.StadiumId,
                 UserId = model.UserId,
-                OrderDateTime = DateTime.Now,
+                OrderDateTime = model.OrderDateTime,
             };
             await _repository.Create(order);
             return new BaseResponse<Order>()
@@ -56,55 +56,6 @@ public class OrderService : IOrderService
             return new BaseResponse<List<Order>>
             {
                 Description = $"[GetAll] {ex.Message}",
-                StatusCode = Domain.Enums.StatusCode.Error
-            };
-        }
-    }
-
-    public async Task<IBaseResponse<Order>> UpdateAsync(UpdateOrderViewModel model, long id)
-    {
-        try
-        {
-            var find = _repository.GetAll().SingleOrDefault(x => x.Id == id);
-            var order = new Order()
-            {
-                StadiumId = model.StadiumId,
-                UserId = model.UserId,
-                OrderDateTime = model.OrderDateTime,
-            };
-            await _repository.Update(order);
-            return new BaseResponse<Order>
-            {
-                Data = order,
-                StatusCode = Domain.Enums.StatusCode.OK
-            };
-        }
-        catch (Exception ex)
-        {
-            return new BaseResponse<Order>
-            {
-            Description = $"[UpdateAsync] {ex.Message}",
-                StatusCode = Domain.Enums.StatusCode.Error
-            };
-        }
-    }
-    public async Task<IBaseResponse<Order>> DeleteAsync(long id)
-    {
-        try
-        {
-            var order = _repository.GetAll().SingleOrDefault(x => x.Id == id);
-            await _repository.Delete(order);
-            return new BaseResponse<Order>
-            {
-                Data = order,
-                StatusCode = Domain.Enums.StatusCode.OK
-            };
-        }
-        catch (Exception ex)
-        {
-            return new BaseResponse<Order>
-            {
-                Description = $"[DeleteAsync] {ex.Message}",
                 StatusCode = Domain.Enums.StatusCode.Error
             };
         }

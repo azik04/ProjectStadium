@@ -1,4 +1,5 @@
 ﻿using Domain.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories.Orders;
 public class OrderRepository : IOrderRepository
@@ -15,17 +16,5 @@ public class OrderRepository : IOrderRepository
         await _db.SaveChangesAsync();
         return true;
     }
-    public IQueryable<Order> GetAll() => _db.Orders;
-    public async Task<Order> Update(Order entity)
-    {
-        _db.Orders.Update(entity);
-        await _db.SaveChangesAsync();
-        return entity;
-    }
-    public async Task<bool> Delete(Order entity)
-    {
-        _db.Orders.Remove(entity);
-        await _db.SaveChangesAsync();
-        return true;
-    }
+    public IQueryable<Order> GetAll() => _db.Orders.Include(x => x.StadiumId);
 }

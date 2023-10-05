@@ -1,5 +1,6 @@
 ﻿using DAL.Repositories.Stadiums;
 using Domain.Entity;
+using Domain.Enums;
 using Domain.Response;
 using Domain.ViewModels.Stadiums;
 
@@ -20,7 +21,6 @@ public class StadiumService : IStadiumService
             {
                 StadiumAdress = model.StadiumAdress,
                 StadiumName = model.StadiumName,
-                StadiumPrice = model.StadiumPrice,
             };
             await _repository.Create(stadium);
             return new BaseResponse<Stadium>()
@@ -58,35 +58,7 @@ public class StadiumService : IStadiumService
                 StatusCode = Domain.Enums.StatusCode.Error
             };
         }
-    }
-
-    public async Task<IBaseResponse<Stadium>> UpdateAsync(UpdateStadiumViewModel model, long id)
-    {
-        try
-        {
-            var find = _repository.GetAll().SingleOrDefault(x => x.Id == id);
-            var stadium = new Stadium()
-            {
-                StadiumAdress = model.StadiumAdress,
-                StadiumName = model.StadiumName,
-                StadiumPrice = model.StadiumPrice,
-            };
-            await _repository.Update(stadium);
-            return new BaseResponse<Stadium>()
-            {
-                Data = stadium,
-                StatusCode = Domain.Enums.StatusCode.OK
-            };
-        }
-        catch (Exception ex)
-        {
-            return new BaseResponse<Stadium>()
-            {
-                Description = $"[UpdateAsync] {ex.Message}",
-                StatusCode = Domain.Enums.StatusCode.Error
-            };
-        }
-    }
+    }    
     public async Task<IBaseResponse<Stadium>> DeleteAsync(long id)
     {
         try
@@ -109,4 +81,32 @@ public class StadiumService : IStadiumService
         }
     }
 
+    public async Task<IBaseResponse<Stadium>> GetByName(string name)
+    {
+        try
+        {
+            var stadium = _repository.GetAll().SingleOrDefault(x => x.StadiumName == name);
+            if (stadium == null)
+            {
+                return new BaseResponse<Stadium>()
+                {
+                    Description = "Стадион не найден",
+                    StatusCode = StatusCode.StadiumNotFound,
+                };
+            }
+            return new BaseResponse<Stadium>()
+            {
+                StatusCode = StatusCode.OK,
+                Data = stadium
+            };
+        }
+        catch (Exception ex)
+        {
+            return new BaseResponse<Stadium>()
+            {
+                Description = $"[GetCar] : {ex.Message}",
+                StatusCode = StatusCode.Error
+            };
+        }
+    }
 }

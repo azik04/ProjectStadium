@@ -7,6 +7,6 @@ public interface IStadiumService
 {
     Task<IBaseResponse<Stadium>> CreateAsync(CreateStadiumViewModel model);
     IBaseResponse<List<Stadium>> GetAll();
-    Task<IBaseResponse<Stadium>> UpdateAsync(UpdateStadiumViewModel model, long id);
+    Task<IBaseResponse<Stadium>> GetByName(string name);
     Task<IBaseResponse<Stadium>> DeleteAsync(long id);
 }

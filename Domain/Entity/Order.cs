@@ -5,5 +5,5 @@ public class Order
     public long StadiumId { get; set; }
     public long UserId { get; set; }
     public DateTime CreateDateTime { get; set; }
-    public DateTime OrderDateTime { get; set; }
+    public string OrderDateTime { get; set; }
 }

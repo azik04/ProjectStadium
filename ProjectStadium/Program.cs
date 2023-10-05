@@ -1,9 +1,12 @@
+using BLL.Services.Account;
 using BLL.Services.Orders;
 using BLL.Services.OrderTimes;
 using BLL.Services.Stadiums;
+using BLL.Services.Users;
 using DAL.Repositories.Orders;
 using DAL.Repositories.OrderTimes;
 using DAL.Repositories.Stadiums;
+using DAL.Repositories.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +21,9 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderTimeRepository, OrderTimeRepository>();
 builder.Services.AddScoped<IOrderTimeService, OrderTimeService>();   
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAccountService,  AccountService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddSwaggerGen();
 
 
@@ -32,7 +38,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
+
+app.UseRouting();
+
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

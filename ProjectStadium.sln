@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectStadium", "ProjectStadium\ProjectStadium.csproj", "{DF0DBBE9-4F6A-4442-88E5-0C03BEC8180F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectStadium", "ProjectStadium\ProjectStadium.csproj", "{DF0DBBE9-4F6A-4442-88E5-0C03BEC8180F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stadium.Domain", "Stadium.Domain", "{348C1A5C-A283-41A5-B080-3C04520A606D}"
 EndProject
@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stadium.DAL", "Stadium.DAL"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stadium.BLL", "Stadium.BLL", "{FC40E466-BF37-40C3-814B-8853F2863E38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{745D6BF5-3C53-40D5-B7E0-CA3E2C88E460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{745D6BF5-3C53-40D5-B7E0-CA3E2C88E460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{4CDBDE84-46BC-4268-A37F-A06923137FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{4CDBDE84-46BC-4268-A37F-A06923137FAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{BE71DB57-623F-4F8C-8D1B-15C086CC8325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{BE71DB57-623F-4F8C-8D1B-15C086CC8325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
