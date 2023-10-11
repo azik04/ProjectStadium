@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 
-namespace BLL.Services.Auth;
 
+namespace Domain.ViewModels.Auth;
 public class ChangePassViewModel
 {
     [Required(ErrorMessage = "Укажите имя")]

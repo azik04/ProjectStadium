@@ -1,5 +1,4 @@
-﻿using BLL.Services.Auth;
-using DAL.Repositories;
+﻿using DAL.Repositories;
 using Domain.Entity;
 using Domain.Enum;
 using Domain.Enums;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using Domain.ViewModels.Auth;
 
 namespace BLL.Services.Account;
 public class AccountService : IAccountService
@@ -149,4 +149,6 @@ public class AccountService : IAccountService
         return new ClaimsIdentity(claims, "ApplicationCookie",
             ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
     }
+
+
 }

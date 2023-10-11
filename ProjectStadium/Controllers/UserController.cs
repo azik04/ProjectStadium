@@ -37,17 +37,10 @@ public class UserController : ControllerBase
             var response = await _userService.Create(model);
             if (response.StatusCode == Domain.Enums.StatusCode.OK)
             {
-                return Json(new { description = response.Description });
+                return Ok(new { description = response.Description });
             }
             return BadRequest(new { errorMessage = response.Description });
         }
         return Ok();
-    }
-
-    [HttpPost]
-    public JsonResult GetRoles()
-    {
-        var types = _userService.GetRoles();
-        return Json(types.Data);
     }
 }

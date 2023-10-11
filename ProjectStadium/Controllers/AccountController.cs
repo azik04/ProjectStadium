@@ -1,10 +1,10 @@
 ﻿using BLL.Services.Account;
-using BLL.Services.Auth;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Domain.ViewModels.Auth;
 
 namespace ProjectStadium.Controllers;
 
@@ -69,7 +69,7 @@ public class AccountController : ControllerBase
             var response = await _accountService.ChangePassword(model);
             if (response.StatusCode == Domain.Enums.StatusCode.OK)
             {
-                return Json(new { description = response.Description });
+                return Ok(new { description = response.Description });
             }
         }
         var modelError = ModelState.Values.SelectMany(v => v.Errors);

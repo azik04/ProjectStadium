@@ -11,33 +11,35 @@ namespace ProjectStadium.Controllers;
 [ApiController]
 public class StadiumController : ControllerBase
 {
-    private readonly IStadiumService _service;
-    public StadiumController (IStadiumService service)
+    private readonly StadiumService _service;
+    public StadiumController(StadiumService service)
     {
         _service = service;
     }
     [HttpPost]
     public async Task<IActionResult> Create(CreateStadiumViewModel viewModel)
     {
-        await _service.CreateAsync(viewModel);
+        var response = _service.CreateAsync(viewModel);
         return Ok(viewModel);
     }
     [HttpGet]
     public IActionResult GetAll()
     {
         var response = _service.GetAll();
-        return Ok(response.Data);
+        if (response.StatusCode == Domain.Enums.StatusCode.OK)
+        {
+            return Ok(response.Data);
+        }
+        return RedirectToAction("Error", $"{response.Description}");
     }
     [HttpDelete]
-    public  Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var response =  _service.DeleteAsync(id);
-        return bool;
-    }
-    [HttpGet]
-    public  Task<ActionResult> GetByName(string name)
-    {
-        var response = _service.GetByName(name);
-        return Ok(response);
+        var responce = await _service.DeleteAsync(id);
+        if (responce.StatusCode == Domain.Enums.StatusCode.OK)
+        {
+            return Ok("GetAll");
+        }
+        return RedirectToAction("Error");
     }
 }

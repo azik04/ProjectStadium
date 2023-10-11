@@ -1,5 +1,5 @@
-﻿using BLL.Services.Auth;
-using Domain.Response;
+﻿using Domain.Response;
+using Domain.ViewModels.Auth;
 using System.Security.Claims;
 
 namespace BLL.Services.Account;

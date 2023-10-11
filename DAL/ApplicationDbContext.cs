@@ -13,8 +13,7 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
        : base(options)
     {
-        Database.SetConnectionString("DESKTOP-CELEVHP\\SQLEXPRESS;Database=AzFarFroup;Trusted_Connection=True");
-        Database.EnsureCreated();
+
     }
     //protected override void OnModelCreating(ModelBuilder modelBuilder)
     //{
